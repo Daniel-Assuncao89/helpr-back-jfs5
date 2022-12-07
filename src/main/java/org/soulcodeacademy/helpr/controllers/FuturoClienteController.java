@@ -15,27 +15,27 @@ public class FuturoClienteController {
     @Autowired
     private FuturoClienteService futuroClienteService;
 
-    @GetMapping("/futuros-clientes")
+    @GetMapping("/clientes/futuros-clientes")
     public List<FuturoCliente> listar(){
         return this.futuroClienteService.listar();
     }
 
-    @GetMapping("/futuros-clientes/email")
+    @GetMapping("/clientes/futuros-clientes/email")
     public FuturoCliente filtarPorEmail(@RequestParam String email){
         return this.futuroClienteService.getFuturoClienteByEmail(email);
     }
 
-    @GetMapping("/futuros-clientes/cpf")
+    @GetMapping("/clientes/futuros-clientes/cpf")
     public FuturoCliente filtrarPorCpf(@RequestParam String cpf){
         return this.futuroClienteService.getFuturoClienteByCpf(cpf);
     }
 
-    @PostMapping("/futuros-clientes")
+    @PostMapping("/clientes/futuros-clientes")
     public FuturoCliente salvar(@Valid @RequestBody FuturoClienteDTO dto){
         return this.futuroClienteService.salvar(dto);
     }
 
-    @DeleteMapping("/futuros-clientes/{idFuturosClientes}")
+    @DeleteMapping("/clientes/futuros-clientes/{idFuturosClientes}")
     public void delete(@PathVariable Integer idFuturosClientes){
          this.futuroClienteService.deletar(idFuturosClientes);
     }
