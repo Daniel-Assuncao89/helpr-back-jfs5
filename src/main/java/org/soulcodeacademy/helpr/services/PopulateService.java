@@ -29,6 +29,9 @@ public class PopulateService {
     @Autowired
     private DependenteRepository dependenteRepository;
 
+    @Autowired
+    private FuturoClienteRepository futuroClienteRepository;
+
     public void populate() {
 
         Cargo c1 = new Cargo(null, "Diretor Geral", "Gerencia a empresa", 30000.0);
@@ -58,17 +61,17 @@ public class PopulateService {
         Funcionario f10 = new Funcionario(null, "Isis Maldonado", "maldonadoisis@gmail.com", "38446581060", encoder.encode("12345"), null, c6);
         f10.setPerfil(Perfil.ADMIN);
 
-
-
         Dependente d1 = new Dependente( null, "Pedro Antunes", "55432175", LocalDate.of(2021,10,10), "primeiro grau completo", f1 );
         Dependente d2 = new Dependente( null, "Maria Eduarda", "54321064", LocalDate.of(2020,01,01), "segundo grau completo", f2 );
         Dependente d3 = new Dependente( null, "Paulo Henrique", "52221163", LocalDate.of(2019,02,02), "segundo grau incompleto", f2 );
-
 
         Cliente cl1 = new Cliente(null, "José Almir", "jose.almir@gmail.com", "12659185115", encoder.encode("batata"), "9999999999");
         Cliente cl2 = new Cliente(null, "Pedro João", "pedro@gmail.com", "37734168302", encoder.encode("batata"), "9999999997");
         Cliente cl3 = new Cliente(null, "Maria Isabel", "maria.isabel@gmail.com", "90349411085", encoder.encode("batata"), "11963440585");
         Cliente cl4 = new Cliente(null, "Laura Batista", "batistalaura@gmail.com", "62539204058", encoder.encode("batata"), "15937854400");
+
+        FuturoCliente fCliente1 = new FuturoCliente(null, "Livando da Silva","876548783", "livando@gmail.com","53031848209");
+        FuturoCliente fCliente2 = new FuturoCliente(null, "Amanda Laura","8765438783", "amanda@gmail.com","60111296846");
 
         Chamado ch1 = new Chamado(null, "Primeiro chamado do sistema", "Revisar as entidades criadas");
         ch1.setCliente(cl1);
@@ -77,7 +80,6 @@ public class PopulateService {
         ch2.setCliente(cl2);
         ch2.setFuncionario(f1);
         ch2.setStatus(StatusChamado.ATRIBUIDO);
-
 
         Chamado ch3 = new Chamado(null, "Padronizar os títulos e rotas da aplicação", "Corrigir componentes HTML que estão fora da rota.");
         ch3.setCliente(cl3);
@@ -109,6 +111,7 @@ public class PopulateService {
         this.clienteRepository.saveAll(List.of(cl1, cl2, cl3, cl4));
         this.chamadoRepository.saveAll(List.of(ch1, ch2, ch3, ch4, ch5, ch6, ch7));
         this.dependenteRepository.saveAll(List.of(d1, d2, d3));
+        this.futuroClienteRepository.saveAll(List.of(fCliente1, fCliente2));
 
     }
 }
