@@ -5,6 +5,7 @@ import org.soulcodeacademy.helpr.domain.dto.ClienteDTO;
 import org.soulcodeacademy.helpr.repositories.ClienteRepository;
 import org.soulcodeacademy.helpr.services.errors.RecursoNaoEncontradoError;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -37,9 +38,15 @@ public class ClienteService {
 
     public Cliente atualizar(Integer idCliente, ClienteDTO dto) {
         Cliente clienteAtual = this.getCliente(idCliente);
+
+        if(dto.getEmail().equals(clienteAtual.getEmail()) && dto.getCpf().equals(clienteAtual.getCpf())){
+            clienteAtual.setEmail(dto.getEmail());
+            clienteAtual.setCpf(dto.getCpf());
+        } else {
+            throw new DataIntegrityViolationException("Não é possivel alterar o email/cpf");
+        }
+
         clienteAtual.setNome(dto.getNome());
-        clienteAtual.setEmail(dto.getEmail());
-        clienteAtual.setCpf(dto.getCpf());
         clienteAtual.setSenha(encoder.encode(dto.getSenha()));
         clienteAtual.setTelefone(dto.getTelefone());
 
