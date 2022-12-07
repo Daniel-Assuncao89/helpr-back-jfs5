@@ -1,7 +1,5 @@
 package org.soulcodeacademy.helpr.domain;
-
 import org.soulcodeacademy.helpr.domain.enums.StatusChamado;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 

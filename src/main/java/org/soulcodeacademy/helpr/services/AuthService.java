@@ -1,5 +1,4 @@
 package org.soulcodeacademy.helpr.services;
-
 import org.soulcodeacademy.helpr.domain.dto.CredenciaisDTO;
 import org.soulcodeacademy.helpr.domain.dto.TokenDTO;
 import org.soulcodeacademy.helpr.security.TokenUtil;
@@ -10,7 +9,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-
 import java.util.Collection;
 
 @Service

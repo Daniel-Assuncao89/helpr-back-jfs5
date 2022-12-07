@@ -1,5 +1,4 @@
 package org.soulcodeacademy.helpr.security;
-
 import org.soulcodeacademy.helpr.domain.Usuario;
 import org.soulcodeacademy.helpr.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,16 +6,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 
-// Carregar a entidade usuário do banco de dados
-// e converter para o UsuarioSecurity
 @Service
 public class UsuarioSecurityService implements UserDetailsService {
     @Autowired
     private UsuarioRepository usuarioRepository;
-
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

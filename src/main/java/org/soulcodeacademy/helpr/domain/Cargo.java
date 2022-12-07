@@ -1,8 +1,8 @@
 package org.soulcodeacademy.helpr.domain;
 
-import javax.persistence.*; // JPA = JAVA PERSISTENCE API
+import javax.persistence.*;
 
-// Transformar a classe em uma entidade/tabela no banco
+
 @Entity
 public class Cargo {
     @Id // PRIMARY KEY

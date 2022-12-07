@@ -1,5 +1,4 @@
 package org.soulcodeacademy.helpr.domain;
-
 import javax.persistence.*;
 
 @Entity

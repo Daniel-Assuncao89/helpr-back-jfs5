@@ -1,8 +1,6 @@
 package org.soulcodeacademy.helpr.domain;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.soulcodeacademy.helpr.domain.enums.Perfil;
-
 import javax.persistence.*;
 
 @Entity

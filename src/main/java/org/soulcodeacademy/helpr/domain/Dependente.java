@@ -1,11 +1,6 @@
 package org.soulcodeacademy.helpr.domain;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import org.soulcodeacademy.helpr.domain.enums.StatusChamado;
-
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 public class Dependente {

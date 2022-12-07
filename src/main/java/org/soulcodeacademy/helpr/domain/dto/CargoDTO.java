@@ -2,8 +2,7 @@ package org.soulcodeacademy.helpr.domain.dto;
 
 import javax.validation.constraints.*;
 
-// DTO - Objeto de Transferência de Dados
-// É útil para validarmos as informações transferidas pelo cliente
+
 public class CargoDTO {
 
 

@@ -1,7 +1,5 @@
 package org.soulcodeacademy.helpr.domain;
-
 import org.soulcodeacademy.helpr.domain.enums.Perfil;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
