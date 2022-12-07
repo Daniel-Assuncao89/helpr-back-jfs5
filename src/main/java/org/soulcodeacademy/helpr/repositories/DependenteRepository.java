@@ -23,17 +23,4 @@ public interface DependenteRepository extends JpaRepository<Dependente, Integer>
     List<Dependente> findByFuncionario(Funcionario funcionario);
 
 
-
-
-
-
-
-
-
-    // O repository deve apresentar os seguintes filtros:
-
-  //  Filtrar os dependentes por data between;
-  //  Filtrar por CPF;
-  //  Filtrar por escolaridade;
-  //  Filtrar por responsável;
 }

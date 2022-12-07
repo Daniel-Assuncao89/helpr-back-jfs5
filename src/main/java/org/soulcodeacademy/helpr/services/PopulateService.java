@@ -12,10 +12,10 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-// Torna o objeto de PopulateService disponível para toda a aplicação (global)
-@Service // indica para o Spring que esta classe será gerenciada por ele
+
+@Service
 public class PopulateService {
-    @Autowired // injetar o objeto direto na classe
+    @Autowired
     private CargoRepository cargoRepository;
 
     @Autowired
@@ -44,7 +44,7 @@ public class PopulateService {
         Cargo c7 = new Cargo(null, "Desenvolvedor Júnior", "Suporte ao Desenvolvimento", 12000.0);
 
 
-        // Integer id, String nome, String email, String cpf, String senha, String foto, Cargo cargo
+
 
         Funcionario f1 = new Funcionario(null, "Renato Pereira", "renato.pereira@gmail.com", "68258098144", encoder.encode("12345"), null, c1);
         f1.setPerfil(Perfil.ADMIN);
@@ -65,7 +65,7 @@ public class PopulateService {
         Funcionario f10 = new Funcionario(null, "Isis Maldonado", "maldonadoisis@gmail.com", "38446581060", encoder.encode("12345"), null, c6);
         f10.setPerfil(Perfil.ADMIN);
 
-        //Popular dependente:
+
 
         Dependente d1 = new Dependente( null, "Pedro Antunes", "55432175", LocalDate.of(2021,10,10), "primeiro grau completo", f1 );
         Dependente d2 = new Dependente( null, "Maria Eduarda", "54321064", LocalDate.of(2020,01,01), "segundo grau completo", f2 );
@@ -122,8 +122,3 @@ public class PopulateService {
     }
 }
 
-// O objetivo desta classe é inserir no banco, dados fictícios (de teste)
-// IOC = Inversion of Control = Inversão de Controle = É ele quem manda nas instâncias
-// Container = é o local onde o Spring guarda os objetos anotados
-// @Service = indica que a classe é um serviço
-// Injeção de Dependências = quando o Spring injeta os objetos na classe

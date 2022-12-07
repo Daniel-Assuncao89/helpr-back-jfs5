@@ -7,10 +7,10 @@ import javax.persistence.Entity;
 
 @Entity
 public class Cliente extends Usuario {
-    @Column(length = 25) // VARCHAR(25)
+    @Column(length = 25)
     private String telefone;
 
-    public Cliente() { // obrigatório para a ORM mapear as tabelas/dados
+    public Cliente() {
 
     }
 

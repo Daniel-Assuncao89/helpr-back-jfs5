@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service // torna o objeto da classe injetavel
+@Service
 public class ClienteService {
-    @Autowired // injeção
+    @Autowired
     private ClienteRepository clienteRepository;
 
     @Autowired
@@ -29,7 +29,7 @@ public class ClienteService {
     }
 
     public Cliente salvar(ClienteDTO dto) {
-        // Criação da entidade Cliente, a partir dos dados validados do DTO
+
         Cliente novoCliente = new Cliente(null, dto.getNome(), dto.getEmail(), dto.getCpf(), encoder.encode(dto.getSenha()), dto.getTelefone());
 
         return this.clienteRepository.save(novoCliente);
@@ -52,6 +52,3 @@ public class ClienteService {
     }
 }
 
-// Quando usar entidade e dto?
-// Entidade = retorno dos dados
-// DTO = entrada de dados

@@ -19,7 +19,7 @@ public class FuturoCliente {
     public String email;
 
     @Column(nullable = false, unique = true, length = 11)
-    public String cpf;        //? public ou protected?
+    public String cpf;
 
     public FuturoCliente (){ }
 

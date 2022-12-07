@@ -27,8 +27,8 @@ public class Dependente {
     private String escolaridade;
 
 
-    @ManyToOne // Muitos Dependentes P/ Um Funcionario
-    @JoinColumn(name = "id_funcionario") // FOREIGN KEY (id_funcionario) REFERENCES funcionario(id_funcionario)
+    @ManyToOne
+    @JoinColumn(name = "id_funcionario")
     private Funcionario funcionario;
 
 

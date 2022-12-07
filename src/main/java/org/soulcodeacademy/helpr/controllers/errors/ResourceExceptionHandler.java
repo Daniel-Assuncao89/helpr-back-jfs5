@@ -12,20 +12,18 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 
-// Quando acontece um erro, esta classe decide como retornar
-// a mensagem para o cliente
-@ControllerAdvice // capacidade de gerenciar os erros que acontecem
+
+@ControllerAdvice
 public class ResourceExceptionHandler {
     @ExceptionHandler(RecursoNaoEncontradoError.class)
     public ResponseEntity<CustomErrorResponse> recursoNaoEncontradoError(RecursoNaoEncontradoError erro, HttpServletRequest request) {
         CustomErrorResponse response = new CustomErrorResponse();
 
-        response.setTimestamp(LocalDateTime.now()); // Define a data e hora em que o erro ocorreu
-        response.setStatus(HttpStatus.NOT_FOUND.value()); // Define como 404 o codigo de status
-        response.setMessage(erro.getMessage()); // Define a mensagem de erro vinda do service
-        response.setPath(request.getRequestURI()); // Define qual endpoint ocorreu a requisição
+        response.setTimestamp(LocalDateTime.now());
+        response.setStatus(HttpStatus.NOT_FOUND.value());
+        response.setMessage(erro.getMessage());
+        response.setPath(request.getRequestURI());
 
-        // Retorna o objeto com os dados e código 404
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 
@@ -46,7 +44,7 @@ public class ResourceExceptionHandler {
         CustomErrorResponse response = new CustomErrorResponse();
 
         response.setTimestamp(LocalDateTime.now());
-        response.setStatus(HttpStatus.FORBIDDEN.value()); // 403
+        response.setStatus(HttpStatus.FORBIDDEN.value());
         response.setMessage("Email/senha inválidos!");
         response.setPath(request.getRequestURI());
 

@@ -4,19 +4,19 @@ import javax.persistence.*; // JPA = JAVA PERSISTENCE API
 
 // Transformar a classe em uma entidade/tabela no banco
 @Entity
-public class Cargo { // nome da tabela = cargo
+public class Cargo {
     @Id // PRIMARY KEY
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT
-    private Integer idCargo; // será a chave primária da tabela
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idCargo;
 
-    @Column(nullable = false, length = 50) // NOT NULL, e máximo de 50 caracteres
+    @Column(nullable = false, length = 50)
     private String nome;
-    @Column(nullable = false, length = 120) // NOT NULL, e 120 caracteres
+    @Column(nullable = false, length = 120)
     private String descricao;
-    @Column(nullable = false) // @Column serve para customizar a coluna
+    @Column(nullable = false)
     private Double salario;
 
-    // a ORM irá usar este construtor em conjunto dos getters/setters
+
     public Cargo() {}
 
     public Cargo(Integer idCargo, String nome, String descricao, Double salario) {
