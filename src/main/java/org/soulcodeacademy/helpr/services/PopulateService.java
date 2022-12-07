@@ -1,19 +1,15 @@
 package org.soulcodeacademy.helpr.services;
 
-import org.soulcodeacademy.helpr.domain.Cargo;
-import org.soulcodeacademy.helpr.domain.Chamado;
-import org.soulcodeacademy.helpr.domain.Cliente;
-import org.soulcodeacademy.helpr.domain.Funcionario;
+import org.soulcodeacademy.helpr.domain.*;
 import org.soulcodeacademy.helpr.domain.enums.Perfil;
 import org.soulcodeacademy.helpr.domain.enums.StatusChamado;
-import org.soulcodeacademy.helpr.repositories.CargoRepository;
-import org.soulcodeacademy.helpr.repositories.ChamadoRepository;
-import org.soulcodeacademy.helpr.repositories.ClienteRepository;
-import org.soulcodeacademy.helpr.repositories.FuncionarioRepository;
+import org.soulcodeacademy.helpr.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 // Torna o objeto de PopulateService disponível para toda a aplicação (global)
@@ -34,6 +30,9 @@ public class PopulateService {
     @Autowired
     private PasswordEncoder encoder;
 
+    @Autowired
+    private DependenteRepository dependenteRepository;
+
     public void populate() {
 
         Cargo c1 = new Cargo(null, "Diretor Geral", "Gerencia a empresa", 30000.0);
@@ -43,6 +42,9 @@ public class PopulateService {
         Cargo c5 = new Cargo(null, "Surpervisor Operacional", "Supervisão dos chamados urgentes", 15000.0);
         Cargo c6 = new Cargo(null, "Desenvolvedor Pleno", "Analisa e desenvolve aplicações", 15000.0);
         Cargo c7 = new Cargo(null, "Desenvolvedor Júnior", "Suporte ao Desenvolvimento", 12000.0);
+
+
+        // Integer id, String nome, String email, String cpf, String senha, String foto, Cargo cargo
 
         Funcionario f1 = new Funcionario(null, "Renato Pereira", "renato.pereira@gmail.com", "68258098144", encoder.encode("12345"), null, c1);
         f1.setPerfil(Perfil.ADMIN);
@@ -63,6 +65,13 @@ public class PopulateService {
         Funcionario f10 = new Funcionario(null, "Isis Maldonado", "maldonadoisis@gmail.com", "38446581060", encoder.encode("12345"), null, c6);
         f10.setPerfil(Perfil.ADMIN);
 
+        //Popular dependente:
+
+        Dependente d1 = new Dependente( null, "Pedro Antunes", "55432175", LocalDate.of(2021,10,10), "primeiro grau completo", f1 );
+        Dependente d2 = new Dependente( null, "Maria Eduarda", "54321064", LocalDate.of(2020,01,01), "segundo grau completo", f2 );
+        Dependente d3 = new Dependente( null, "Paulo Henrique", "52221163", LocalDate.of(2019,02,02), "segundo grau incompleto", f2 );
+
+
         Cliente cl1 = new Cliente(null, "José Almir", "jose.almir@gmail.com", "12659185115", encoder.encode("batata"), "9999999999");
         Cliente cl2 = new Cliente(null, "Pedro João", "pedro@gmail.com", "37734168302", encoder.encode("batata"), "9999999997");
         Cliente cl3 = new Cliente(null, "Maria Isabel", "maria.isabel@gmail.com", "90349411085", encoder.encode("batata"), "11963440585");
@@ -75,6 +84,7 @@ public class PopulateService {
         ch2.setCliente(cl2);
         ch2.setFuncionario(f1);
         ch2.setStatus(StatusChamado.ATRIBUIDO);
+
 
         Chamado ch3 = new Chamado(null, "Padronizar os títulos e rotas da aplicação", "Corrigir componentes HTML que estão fora da rota.");
         ch3.setCliente(cl3);
@@ -105,6 +115,10 @@ public class PopulateService {
         this.funcionarioRepository.saveAll(List.of(f1, f2, f3, f4, f5, f6, f7, f8, f9, f10));
         this.clienteRepository.saveAll(List.of(cl1, cl2, cl3, cl4));
         this.chamadoRepository.saveAll(List.of(ch1, ch2, ch3, ch4, ch5, ch6, ch7));
+        this.dependenteRepository.saveAll(List.of(d1, d2, d3));
+
+
+
     }
 }
 
