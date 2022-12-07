@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 public class DependenteDTO {
   @NotBlank(message = "Campo nome é obrigatório")
@@ -15,8 +16,8 @@ public class DependenteDTO {
    @CPF
    public String cpf;
 
-   @NotBlank(message = "Campo data de nascimento é obrigatório")
-    public String dataDeNascimento;
+   @NotNull(message = "Campo data de nascimento é obrigatório")
+    public LocalDate dataDeNascimento;
 
    @NotNull(message = "Campo escolaridade é obrigatório")
    public String escolaridade;
@@ -40,11 +41,11 @@ public class DependenteDTO {
         this.cpf = cpf;
     }
 
-    public String getDataDeNascimento() {
+    public LocalDate getDataDeNascimento() {
         return dataDeNascimento;
     }
 
-    public void setDataDeNascimento(String dataDeNascimento) {
+    public void setDataDeNascimento(LocalDate dataDeNascimento) {
         this.dataDeNascimento = dataDeNascimento;
     }
 
