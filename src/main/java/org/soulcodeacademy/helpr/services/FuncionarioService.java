@@ -6,6 +6,7 @@ import org.soulcodeacademy.helpr.domain.dto.FuncionarioDTO;
 import org.soulcodeacademy.helpr.repositories.FuncionarioRepository;
 import org.soulcodeacademy.helpr.services.errors.RecursoNaoEncontradoError;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,9 @@ public class FuncionarioService {
 
     @Autowired
     private CargoService cargoService;
+
+    @Autowired
+    private PasswordEncoder encoder;
 
     public List<Funcionario> listar() {
         return this.funcionarioRepository.findAll();
@@ -42,7 +46,7 @@ public class FuncionarioService {
         Cargo cargo = this.cargoService.getCargo(dto.getIdCargo()); // verifica se o cargo existe mesmo
         // id, nome, email,cpf, String senha, foto, cargo
         // Transferindo informações do DTO para nossa entidade
-        Funcionario funcionario = new Funcionario(null, dto.getNome(), dto.getEmail(), dto.getCpf(), dto.getSenha(), dto.getFoto(), cargo);
+        Funcionario funcionario = new Funcionario(null, dto.getNome(), dto.getEmail(), dto.getCpf(), encoder.encode(dto.getSenha()), dto.getFoto(), cargo);
         Funcionario salvo = this.funcionarioRepository.save(funcionario);
 
         return salvo;
@@ -57,7 +61,7 @@ public class FuncionarioService {
         funcionarioAtual.setNome(dto.getNome());
         funcionarioAtual.setEmail(dto.getEmail());
         funcionarioAtual.setCpf(dto.getCpf());
-        funcionarioAtual.setSenha(dto.getSenha());
+        funcionarioAtual.setSenha(encoder.encode(dto.getSenha()));
         funcionarioAtual.setFoto(dto.getFoto());
         funcionarioAtual.setCargo(cargo);
 
