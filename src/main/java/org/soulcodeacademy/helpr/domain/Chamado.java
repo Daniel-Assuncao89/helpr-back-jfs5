@@ -1,7 +1,5 @@
 package org.soulcodeacademy.helpr.domain;
-
 import org.soulcodeacademy.helpr.domain.enums.StatusChamado;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -21,14 +19,14 @@ public class Chamado {
 
     private LocalDate dataFechamento;
 
-    @Enumerated(EnumType.STRING) // representando o enum "escrito"
+    @Enumerated(EnumType.STRING)
     private StatusChamado status = StatusChamado.RECEBIDO;
 
-    @ManyToOne // MUITOS CHAMADOS P/ UM FUNCIONÁRIO
-    @JoinColumn(name = "id_funcionario") // FOREIGN KEY (id_funcionario) REFERENCES funcionario(id_funcionario)
+    @ManyToOne
+    @JoinColumn(name = "id_funcionario")
     private Funcionario funcionario;
 
-    @ManyToOne // MUITOS CHAMADOS P/ UM CLIENTE
+    @ManyToOne
     @JoinColumn(name = "id_cliente", nullable = false)
     private Cliente cliente;
 

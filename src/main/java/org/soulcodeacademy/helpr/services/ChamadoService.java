@@ -1,5 +1,4 @@
 package org.soulcodeacademy.helpr.services;
-
 import org.soulcodeacademy.helpr.domain.Chamado;
 import org.soulcodeacademy.helpr.domain.Cliente;
 import org.soulcodeacademy.helpr.domain.Funcionario;
@@ -10,7 +9,6 @@ import org.soulcodeacademy.helpr.services.errors.ParametrosInsuficientesError;
 import org.soulcodeacademy.helpr.services.errors.RecursoNaoEncontradoError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -30,16 +28,16 @@ public class ChamadoService {
     }
 
     public Chamado getChamado(Integer idChamado) {
-        // Caso não encontre o chamado, lança a exceção.
+
         return this.chamadoRepository.findById(idChamado)
                 .orElseThrow(() -> new RecursoNaoEncontradoError("Chamado não encontrado"));
     }
 
     public Chamado salvar(ChamadoDTO dto) {
-        // Verificar se existe um cliente com este ID
+
         Cliente cliente = this.clienteService.getCliente(dto.getIdCliente());
         Chamado chamado = new Chamado(null, dto.getTitulo(), dto.getDescricao());
-        chamado.setCliente(cliente); // associa o cliente ao chamado
+        chamado.setCliente(cliente);
 
         return this.chamadoRepository.save(chamado);
     }
@@ -56,7 +54,7 @@ public class ChamadoService {
         } else {
             Funcionario funcionario = this.funcionarioService.getFuncionario(dto.getIdFuncionario());
 
-            switch (dto.getStatus()) { // Escolha o valor de getStatus()
+            switch (dto.getStatus()) {
                 case RECEBIDO -> {
                     chamadoAtual.setStatus(StatusChamado.RECEBIDO);
                     chamadoAtual.setFuncionario(null);

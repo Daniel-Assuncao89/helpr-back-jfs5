@@ -1,5 +1,4 @@
 package org.soulcodeacademy.helpr.repositories;
-
 import org.soulcodeacademy.helpr.domain.Chamado;
 import org.soulcodeacademy.helpr.domain.Cliente;
 import org.soulcodeacademy.helpr.domain.Funcionario;
@@ -13,11 +12,11 @@ import java.util.List;
 
 @Repository
 public interface ChamadoRepository extends JpaRepository<Chamado, Integer> {
-    List<Chamado> findByStatus(StatusChamado status); // Filtrar os chamados de acordo com o status
-    List<Chamado> findByCliente(Cliente cliente); // Filtrar os chamados de um cliente
-    List<Chamado> findByFuncionario(Funcionario funcionario); // Filtrar os chamados de um funcionario
+    List<Chamado> findByStatus(StatusChamado status);
+    List<Chamado> findByCliente(Cliente cliente);
+    List<Chamado> findByFuncionario(Funcionario funcionario);
 
-    // nativeQuery = ativa a sintaxe do SQL
+
     @Query(value = "SELECT * FROM chamado WHERE data_abertura BETWEEN :data1 AND :data2", nativeQuery = true)
     List<Chamado> buscarEntreDatas(LocalDate data1, LocalDate data2);
 }

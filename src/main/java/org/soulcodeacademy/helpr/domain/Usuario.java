@@ -1,15 +1,13 @@
 package org.soulcodeacademy.helpr.domain;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.soulcodeacademy.helpr.domain.enums.Perfil;
-
 import javax.persistence.*;
 
 @Entity
-@Table(name = "usuarios") // coloca um nome específico na tabela
-public class Usuario { // Não será possível criar objetos desta classe
-    @Id // torna o campo abaixo uma PRIMARY KEY
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // preenche o campo id com AUTO_INCREMENT
+@Table(name = "usuarios")
+public abstract class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
 
     @Column(nullable = false, length = 150)
@@ -21,14 +19,14 @@ public class Usuario { // Não será possível criar objetos desta classe
     @Column(nullable = false, unique = true, length = 11)
     protected String cpf;
 
-    @JsonIgnore // impede a leitura da senha no JSON
+    @JsonIgnore
     @Column(nullable = false)
     protected String senha;
 
-    // Representa os valores do ENUM como texto
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    protected Perfil perfil; // Indica o que este usuário é no sistema
+    protected Perfil perfil;
 
     public Usuario() {
     }

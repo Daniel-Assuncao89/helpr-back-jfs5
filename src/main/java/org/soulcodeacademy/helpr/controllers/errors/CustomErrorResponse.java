@@ -2,12 +2,12 @@ package org.soulcodeacademy.helpr.controllers.errors;
 
 import java.time.LocalDateTime;
 
-// Esta classe customiza a resposta de erro original do Spring
+
 public class CustomErrorResponse {
-    private String message; // Mensagem explicando o erro
-    private Integer status; // Código de status HTTP
-    private LocalDateTime timestamp; // Registro de data e hora em que o erro acontece
-    private String path; // Endpoint em que ocorreu o erro
+    private String message;
+    private Integer status;
+    private LocalDateTime timestamp;
+    private String path;
 
     public String getMessage() {
         return message;
