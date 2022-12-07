@@ -8,10 +8,10 @@ import java.util.List;
 
 public interface DependenteRepository extends JpaRepository<Dependente, Integer> {
 
-   @Query(value = "SELECT * FROM dependente WHERE data_de_nascimento BETWEEN :valor1 AND :valor2", nativeQuery = true)
-  List<Dependente> findByDataEntreFaixas(Date valor1, Date valor2);
+    @Query(value = "SELECT * FROM dependente WHERE data_de_nascimento BETWEEN :valor1 AND :valor2", nativeQuery = true)
+    List<Dependente> findByDataEntreFaixas(LocalDate valor1, LocalDate valor2);
 
-    List<Dependente> findByCpf(String cpf);
+    Dependente findByCpf(String cpf);
 
     List<Dependente> findByEscolaridade(String escolaridade);
 
