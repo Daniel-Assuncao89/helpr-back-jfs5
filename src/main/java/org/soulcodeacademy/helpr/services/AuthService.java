@@ -1,5 +1,4 @@
 package org.soulcodeacademy.helpr.services;
-
 import org.soulcodeacademy.helpr.domain.dto.CredenciaisDTO;
 import org.soulcodeacademy.helpr.domain.dto.TokenDTO;
 import org.soulcodeacademy.helpr.security.TokenUtil;
@@ -10,7 +9,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-
 import java.util.Collection;
 
 @Service
@@ -25,8 +23,7 @@ public class AuthService {
     private TokenUtil tokenUtil;
 
     public TokenDTO login(CredenciaisDTO dto) {
-        // Essa linha verifica se o usuário é autêntico/pertence a aplicação/possui acesso
-        // O usuário só será autenticado se passar dessa linha abaixo
+
         this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getSenha()));
         UserDetails usuario = this.service.loadUserByUsername(dto.getEmail());
         String perfil = this.getPerfil(usuario.getAuthorities());
@@ -39,7 +36,7 @@ public class AuthService {
         String perfil = null;
 
         for (GrantedAuthority authority : authorities) {
-            perfil = authority.getAuthority(); // ROLE_...
+            perfil = authority.getAuthority();
         }
 
         return perfil;

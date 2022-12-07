@@ -1,11 +1,6 @@
 package org.soulcodeacademy.helpr.domain;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import org.soulcodeacademy.helpr.domain.enums.StatusChamado;
-
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 public class Dependente {
@@ -27,8 +22,8 @@ public class Dependente {
     private String escolaridade;
 
 
-    @ManyToOne // Muitos Dependentes P/ Um Funcionario
-    @JoinColumn(name = "id_funcionario") // FOREIGN KEY (id_funcionario) REFERENCES funcionario(id_funcionario)
+    @ManyToOne
+    @JoinColumn(name = "id_funcionario")
     private Funcionario funcionario;
 
 

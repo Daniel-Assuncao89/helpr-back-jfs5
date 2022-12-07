@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@RestController // coletar as requisições
+@RestController
 public class ClienteController {
     @Autowired
     private ClienteService clienteService;
@@ -33,7 +33,7 @@ public class ClienteController {
     @PutMapping("/clientes/{idCliente}")
     public Cliente atualizar(@PathVariable Integer idCliente, @Valid @RequestBody ClienteDTO dto) {
         Cliente atualizado = this.clienteService.atualizar(idCliente, dto);
-        return atualizado; // CORPO da Resposta em JSON
+        return atualizado;
     }
 
     @DeleteMapping("/clientes/{idCliente}")
@@ -41,5 +41,3 @@ public class ClienteController {
         this.clienteService.deletar(idCliente);
     }
 }
-// Deserializar => JSON -> Classe
-// Serializar => Classe -> JSON

@@ -1,12 +1,9 @@
 package org.soulcodeacademy.helpr.domain.dto;
-
 import org.hibernate.validator.constraints.br.CPF;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-// Guarda as validações em comum para cliente e funcionário
-// No controller: JSON -> DTO
+
 public abstract class UsuarioDTO {
     @NotBlank(message = "Nome é obrigatório")
     protected String nome;
