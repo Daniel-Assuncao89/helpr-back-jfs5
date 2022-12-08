@@ -18,6 +18,7 @@ public class FuturoCandidato {
     private String descricaoHabilidades;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Setor setor;
 
     public FuturoCandidato(){}

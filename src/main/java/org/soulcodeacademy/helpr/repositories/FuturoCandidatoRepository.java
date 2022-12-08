@@ -14,7 +14,7 @@ public interface FuturoCandidatoRepository extends JpaRepository<FuturoCandidato
 
     Optional<FuturoCandidato> findByEmail(String email);
 
-    @Query(value = "SELECT * FROM futuro_candidato WHERE nome_completo LIKE :nome ", nativeQuery = true)
+    @Query(value = "SELECT * FROM futuro_candidato WHERE nome_completo LIKE :nome% ", nativeQuery = true)
     List<FuturoCandidato> findByNomeCompleto(String nome);
 
     List<FuturoCandidato> findBySetor(Setor setor);
