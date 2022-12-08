@@ -1,5 +1,6 @@
 package org.soulcodeacademy.helpr.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.br.CPF;
 import org.soulcodeacademy.helpr.domain.enums.Perfil;
 import javax.persistence.*;
 
@@ -16,7 +17,8 @@ public abstract class Usuario {
     @Column(nullable = false, unique = true, length = 120)
     protected String email;
 
-    @Column(nullable = false, unique = true, length = 11)
+    @CPF
+    @Column(nullable = false, unique = true, length = 15)
     protected String cpf;
 
     @JsonIgnore

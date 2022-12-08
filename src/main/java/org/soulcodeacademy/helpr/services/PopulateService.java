@@ -45,20 +45,20 @@ public class PopulateService {
         Funcionario f1 = new Funcionario(null, "Renato Pereira", "renato.pereira@gmail.com", "68258098144", encoder.encode("12345"), null, c1);
         f1.setPerfil(Perfil.ADMIN);
 
-        Funcionario f2 = new Funcionario(null, "Victor Icoma", "victor.icoma@gmail.com", "51127383671", encoder.encode("12345"), null, c2);
-        Funcionario f3 = new Funcionario(null, "José Bonifácio", "j.bonifacio@gmail.com", "68579976081", encoder.encode("12345"), null, c3);
-        Funcionario f4 = new Funcionario(null, "Andreia Soares", "soaresandreia@gmail.com", "51699166048", encoder.encode("12345"), null, c4);
-        Funcionario f5 = new Funcionario(null, "Heitor Ferreira", "hferreira@gmail.com", "36684307052", encoder.encode("12345"), null, c5);
+        Funcionario f2 = new Funcionario(null, "Victor Icoma", "victor.icoma@gmail.com", "511.273.836-71", encoder.encode("12345"), null, c2);
+        Funcionario f3 = new Funcionario(null, "José Bonifácio", "j.bonifacio@gmail.com", "685.799.760-81", encoder.encode("12345"), null, c3);
+        Funcionario f4 = new Funcionario(null, "Andreia Soares", "soaresandreia@gmail.com", "516.991.660-48", encoder.encode("12345"), null, c4);
+        Funcionario f5 = new Funcionario(null, "Heitor Ferreira", "hferreira@gmail.com", "366.843.070-52", encoder.encode("12345"), null, c5);
 
-        Funcionario f6 = new Funcionario(null, "Julia Alves", "ju.alves@gmail.com", "71715732065", encoder.encode("12345"), null, c6);
+        Funcionario f6 = new Funcionario(null, "Julia Alves", "ju.alves@gmail.com", "717.157.320-65", encoder.encode("12345"), null, c6);
         f6.setPerfil(Perfil.ADMIN);
-        Funcionario f7 = new Funcionario(null, "Francisco Almeida", "franalmeida@gmail.com", "62624487050", encoder.encode("12345"), null, c7);
+        Funcionario f7 = new Funcionario(null, "Francisco Almeida", "franalmeida@gmail.com", "626.244.870-50", encoder.encode("12345"), null, c7);
         f7.setPerfil(Perfil.ADMIN);
-        Funcionario f8 = new Funcionario(null, "Gustavo Moraes", "gustavo.moraes@gmail.com", "60198195079", encoder.encode("12345"), null, c7);
+        Funcionario f8 = new Funcionario(null, "Gustavo Moraes", "gustavo.moraes@gmail.com", "601.981.950-79", encoder.encode("12345"), null, c7);
         f8.setPerfil(Perfil.ADMIN);
-        Funcionario f9 = new Funcionario(null, "Albertina Santos", "albertinasantos@gmail.com", "04999182076", encoder.encode("12345"), null, c7);
+        Funcionario f9 = new Funcionario(null, "Albertina Santos", "albertinasantos@gmail.com", "049.991.820-76", encoder.encode("12345"), null, c7);
         f9.setPerfil(Perfil.ADMIN);
-        Funcionario f10 = new Funcionario(null, "Isis Maldonado", "maldonadoisis@gmail.com", "38446581060", encoder.encode("12345"), null, c6);
+        Funcionario f10 = new Funcionario(null, "Isis Maldonado", "maldonadoisis@gmail.com", "384.465.810-60", encoder.encode("12345"), null, c6);
         f10.setPerfil(Perfil.ADMIN);
 
         Dependente d1 = new Dependente( null, "Pedro Antunes", "55432175", LocalDate.of(2021,10,10), "primeiro grau completo", f1 );
