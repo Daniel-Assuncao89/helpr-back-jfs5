@@ -50,4 +50,11 @@ public class FuncionarioController {
     public void deletar(@PathVariable Integer idFuncionario) {
         this.funcionarioService.deletar(idFuncionario);
     }
+
+    @GetMapping("/funcionarios/email/{email}")
+    public Funcionario findByEmail(@PathVariable String email) {
+        return this.funcionarioService.findByEmail(email);
+    }
+
+
 }
