@@ -1,6 +1,7 @@
 package org.soulcodeacademy.helpr.services;
 import org.soulcodeacademy.helpr.domain.*;
 import org.soulcodeacademy.helpr.domain.enums.Perfil;
+import org.soulcodeacademy.helpr.domain.enums.Setor;
 import org.soulcodeacademy.helpr.domain.enums.StatusChamado;
 import org.soulcodeacademy.helpr.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class PopulateService {
 
     @Autowired
     private FuturoClienteRepository futuroClienteRepository;
+
+    @Autowired
+    private FuturoCandidatoRepository futuroCandidatoRepository;
 
     public void populate() {
 
@@ -73,6 +77,11 @@ public class PopulateService {
         FuturoCliente fCliente1 = new FuturoCliente(null, "Livando da Silva","876548783", "livando@gmail.com","53031848209");
         FuturoCliente fCliente2 = new FuturoCliente(null, "Amanda Laura","8765438783", "amanda@gmail.com","60111296846");
 
+        FuturoCandidato fCandidato1 = new FuturoCandidato(null, "Fernando Farias", "fernando@gmail.com", "Organizado, comprometido", Setor.DESENVOLVIMENTO);
+        FuturoCandidato fCandidato2 = new FuturoCandidato(null, "Fernando Charles", "charles@gmail.com", "Organizado, comprometido", Setor.MANUTENCAO);
+        FuturoCandidato fCandidato3 = new FuturoCandidato(null, "Fernanda Lamar", "fernanda@gmail.com", "Organizada, comprometida, criativa", Setor.MARKETING);
+        FuturoCandidato fCandidato4 = new FuturoCandidato(null, "Laura Fernanda", "laura@gmail.com", "Organizada, comprometida", Setor.RH);
+
         Chamado ch1 = new Chamado(null, "Primeiro chamado do sistema", "Revisar as entidades criadas");
         ch1.setCliente(cl1);
 
@@ -112,6 +121,7 @@ public class PopulateService {
         this.chamadoRepository.saveAll(List.of(ch1, ch2, ch3, ch4, ch5, ch6, ch7));
         this.dependenteRepository.saveAll(List.of(d1, d2, d3));
         this.futuroClienteRepository.saveAll(List.of(fCliente1, fCliente2));
+        this.futuroCandidatoRepository.saveAll(List.of(fCandidato1, fCandidato2, fCandidato3, fCandidato4));
 
     }
 }
