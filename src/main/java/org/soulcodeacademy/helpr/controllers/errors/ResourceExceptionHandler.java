@@ -1,5 +1,6 @@
 package org.soulcodeacademy.helpr.controllers.errors;
 
+import org.soulcodeacademy.helpr.services.errors.LimiteQuantidadeError;
 import org.soulcodeacademy.helpr.services.errors.ParametrosInsuficientesError;
 import org.soulcodeacademy.helpr.services.errors.RecursoNaoEncontradoError;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -61,5 +62,16 @@ public class ResourceExceptionHandler {
         response.setPath(request.getRequestURI());
 
         return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
+    }
+    @ExceptionHandler(LimiteQuantidadeError.class)
+    public ResponseEntity<CustomErrorResponse> LimiteQuantidadeError(ParametrosInsuficientesError erro, HttpServletRequest request) {
+        CustomErrorResponse response = new CustomErrorResponse();
+
+        response.setTimestamp(LocalDateTime.now());
+        response.setStatus(HttpStatus.BAD_REQUEST.value());
+        response.setMessage(erro.getMessage());
+        response.setPath(request.getRequestURI());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 }
