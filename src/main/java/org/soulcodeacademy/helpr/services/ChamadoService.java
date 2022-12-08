@@ -5,6 +5,7 @@ import org.soulcodeacademy.helpr.domain.Funcionario;
 import org.soulcodeacademy.helpr.domain.dto.ChamadoDTO;
 import org.soulcodeacademy.helpr.domain.enums.StatusChamado;
 import org.soulcodeacademy.helpr.repositories.ChamadoRepository;
+import org.soulcodeacademy.helpr.services.errors.LimiteQuantidadeError;
 import org.soulcodeacademy.helpr.services.errors.ParametrosInsuficientesError;
 import org.soulcodeacademy.helpr.services.errors.RecursoNaoEncontradoError;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,23 +53,26 @@ public class ChamadoService {
         if (dto.getIdFuncionario() == null) {
             throw new ParametrosInsuficientesError("idFuncionario obrigatório");
         } else {
-            Funcionario funcionario = this.funcionarioService.getFuncionario(dto.getIdFuncionario());
-
-            switch (dto.getStatus()) {
-                case RECEBIDO -> {
-                    chamadoAtual.setStatus(StatusChamado.RECEBIDO);
-                    chamadoAtual.setFuncionario(null);
-                    chamadoAtual.setDataFechamento(null);
-                }
-                case ATRIBUIDO -> {
-                    chamadoAtual.setStatus(StatusChamado.ATRIBUIDO);
-                    chamadoAtual.setFuncionario(funcionario);
-                    chamadoAtual.setDataFechamento(null);
-                }
-                case CONCLUIDO -> {
-                    chamadoAtual.setStatus(StatusChamado.CONCLUIDO);
-                    chamadoAtual.setFuncionario(funcionario);
-                    chamadoAtual.setDataFechamento(LocalDate.now());
+            if(this.chamadoRepository.findByFuncionario(this.funcionarioService.getFuncionario(dto.getIdFuncionario())).size() >= 5){
+                throw new LimiteQuantidadeError("Funcionário com mais de 5 chamados abertos");
+            } else {
+                Funcionario funcionario = this.funcionarioService.getFuncionario(dto.getIdFuncionario());
+                switch (dto.getStatus()) {
+                    case RECEBIDO -> {
+                        chamadoAtual.setStatus(StatusChamado.RECEBIDO);
+                        chamadoAtual.setFuncionario(null);
+                        chamadoAtual.setDataFechamento(null);
+                    }
+                    case ATRIBUIDO -> {
+                        chamadoAtual.setStatus(StatusChamado.ATRIBUIDO);
+                        chamadoAtual.setFuncionario(funcionario);
+                        chamadoAtual.setDataFechamento(null);
+                    }
+                    case CONCLUIDO -> {
+                        chamadoAtual.setStatus(StatusChamado.CONCLUIDO);
+                        chamadoAtual.setFuncionario(funcionario);
+                        chamadoAtual.setDataFechamento(LocalDate.now());
+                    }
                 }
             }
         }
