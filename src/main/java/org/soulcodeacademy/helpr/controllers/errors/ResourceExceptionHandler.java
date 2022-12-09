@@ -64,7 +64,7 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
     }
     @ExceptionHandler(LimiteQuantidadeError.class)
-    public ResponseEntity<CustomErrorResponse> LimiteQuantidadeError(ParametrosInsuficientesError erro, HttpServletRequest request) {
+    public ResponseEntity<CustomErrorResponse> LimiteQuantidadeError(LimiteQuantidadeError erro, HttpServletRequest request) {
         CustomErrorResponse response = new CustomErrorResponse();
 
         response.setTimestamp(LocalDateTime.now());

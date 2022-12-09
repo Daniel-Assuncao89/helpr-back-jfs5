@@ -18,6 +18,9 @@ public class CargoDTO {
     @Max(value = 100000, message = "Campo salário inválido")
     private Double salario;
 
+    @NotNull(message = "Limite de funcionário com esse cargo é obrigatório")
+    private Integer limiteFuncionario;
+
     public String getNome() {
         return nome;
     }
@@ -40,5 +43,13 @@ public class CargoDTO {
 
     public void setSalario(Double salario) {
         this.salario = salario;
+    }
+
+    public Integer getLimiteFuncionario() {
+        return limiteFuncionario;
+    }
+
+    public void setLimiteFuncionario(Integer limiteFuncionario) {
+        this.limiteFuncionario = limiteFuncionario;
     }
 }

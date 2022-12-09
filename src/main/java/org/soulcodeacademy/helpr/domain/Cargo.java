@@ -1,6 +1,10 @@
 package org.soulcodeacademy.helpr.domain;
 
+import net.bytebuddy.implementation.bind.annotation.Default;
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -16,14 +20,17 @@ public class Cargo {
     @Column(nullable = false)
     private Double salario;
 
+    @Column(nullable = false, length = 10)
+    private Integer limiteFuncionario;
 
     public Cargo() {}
 
-    public Cargo(Integer idCargo, String nome, String descricao, Double salario) {
+    public Cargo(Integer idCargo, String nome, String descricao, Double salario, Integer limiteFuncionario) {
         this.idCargo = idCargo;
         this.nome = nome;
         this.descricao = descricao;
         this.salario = salario;
+        this.limiteFuncionario = limiteFuncionario;
     }
 
     public Integer getIdCargo() {
@@ -56,5 +63,13 @@ public class Cargo {
 
     public void setSalario(Double salario) {
         this.salario = salario;
+    }
+
+    public Integer getLimiteFuncionario() {
+        return limiteFuncionario;
+    }
+
+    public void setLimiteFuncionario(Integer limiteFuncionario) {
+        this.limiteFuncionario = limiteFuncionario;
     }
 }

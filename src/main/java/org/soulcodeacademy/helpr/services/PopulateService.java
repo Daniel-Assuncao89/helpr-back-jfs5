@@ -38,13 +38,13 @@ public class PopulateService {
 
     public void populate() {
 
-        Cargo c1 = new Cargo(null, "Diretor Geral", "Gerencia a empresa", 30000.0);
-        Cargo c2 = new Cargo(null, "Diretor de Setor", "Gerencia um setor da empresa", 18000.0);
-        Cargo c3 = new Cargo(null, "Técnico geral", "Resolve os chamados urgentes", 12000.0);
-        Cargo c4 = new Cargo(null, "Gerente de qualidade", "Supervisão e Controle de Qualidade", 7000.0);
-        Cargo c5 = new Cargo(null, "Surpervisor Operacional", "Supervisão dos chamados urgentes", 15000.0);
-        Cargo c6 = new Cargo(null, "Desenvolvedor Pleno", "Analisa e desenvolve aplicações", 15000.0);
-        Cargo c7 = new Cargo(null, "Desenvolvedor Júnior", "Suporte ao Desenvolvimento", 12000.0);
+        Cargo c1 = new Cargo(null, "Diretor Geral", "Gerencia a empresa", 30000.0, 1);
+        Cargo c2 = new Cargo(null, "Diretor de Setor", "Gerencia um setor da empresa", 18000.0, 1);
+        Cargo c3 = new Cargo(null, "Técnico geral", "Resolve os chamados urgentes", 12000.0, 3);
+        Cargo c4 = new Cargo(null, "Gerente de qualidade", "Supervisão e Controle de Qualidade", 7000.0, 3);
+        Cargo c5 = new Cargo(null, "Surpervisor Operacional", "Supervisão dos chamados urgentes", 15000.0, 5);
+        Cargo c6 = new Cargo(null, "Desenvolvedor Pleno", "Analisa e desenvolve aplicações", 15000.0, 5);
+        Cargo c7 = new Cargo(null, "Desenvolvedor Júnior", "Suporte ao Desenvolvimento", 12000.0, 5);
 
         Funcionario f1 = new Funcionario(null, "Renato Pereira", "renato.pereira@gmail.com", "68258098144", encoder.encode("12345"), null, c1);
         f1.setPerfil(Perfil.ADMIN);
@@ -62,7 +62,7 @@ public class PopulateService {
         f8.setPerfil(Perfil.ADMIN);
         Funcionario f9 = new Funcionario(null, "Albertina Santos", "albertinasantos@gmail.com", "049.991.820-76", encoder.encode("12345"), null, c7);
         f9.setPerfil(Perfil.ADMIN);
-        Funcionario f10 = new Funcionario(null, "Isis Maldonado", "maldonadoisis@gmail.com", "384.465.810-60", encoder.encode("12345"), null, c6);
+        Funcionario f10 = new Funcionario(null, "Isis Maldonado", "maldonadoisis@gmail.com", "384.465.810-60", encoder.encode("12345"), null, c7);
         f10.setPerfil(Perfil.ADMIN);
 
         Dependente d1 = new Dependente( null, "Pedro Antunes", "55432175", LocalDate.of(2021,10,10), "primeiro grau completo", f1 );
