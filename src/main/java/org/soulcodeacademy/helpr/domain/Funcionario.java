@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 public class Funcionario extends Usuario {
 
     @Lob
-    private byte[] foto;
+    private String foto;
 
     @ManyToOne
     @JoinColumn(name = "id_cargo")
@@ -18,17 +18,17 @@ public class Funcionario extends Usuario {
     public Funcionario() {
     }
 
-    public Funcionario(Integer id, String nome, String email, String cpf, String senha, byte[] foto, Cargo cargo) {
+    public Funcionario(Integer id, String nome, String email, String cpf, String senha, String foto, Cargo cargo) {
         super(id, nome, email, cpf, senha, Perfil.FUNCIONARIO);
         this.foto = foto;
         this.cargo = cargo;
     }
 
-    public byte[] getFoto() {
+    public String getFoto() {
         return foto;
     }
 
-    public void setFoto(byte[] foto) {
+    public void setFoto(String foto) {
         this.foto = foto;
     }
 
