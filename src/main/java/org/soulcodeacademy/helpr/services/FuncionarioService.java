@@ -42,7 +42,7 @@ public class FuncionarioService {
         Integer quantidade = this.funcionarioRepository.CountCargo(dto.getIdCargo());
 
         if(quantidade < cargo.getLimiteFuncionario()){
-            Funcionario funcionario = new Funcionario(null, dto.getNome(), dto.getEmail(), dto.getCpf(), encoder.encode(dto.getSenha()),null, cargo);
+            Funcionario funcionario = new Funcionario(null, dto.getNome(), dto.getEmail(), dto.getCpf(), encoder.encode(dto.getSenha()), dto.getFoto(), cargo);
             Funcionario salvo = this.funcionarioRepository.save(funcionario);
 
             return salvo;
@@ -64,6 +64,7 @@ public class FuncionarioService {
             funcionarioAtual.setCpf(dto.getCpf());
             funcionarioAtual.setSenha(encoder.encode(dto.getSenha()));
             funcionarioAtual.setCargo(cargo);
+            funcionarioAtual.setFoto(dto.getFoto());
 
             Funcionario atualizado = this.funcionarioRepository.save(funcionarioAtual);
             return atualizado;
@@ -87,7 +88,7 @@ public class FuncionarioService {
         // Set the form data into entity
         Funcionario funcionario = this.getFuncionario(idFuncionario);
 
-        funcionario.setFoto(file.getBytes());
+        funcionario.setFoto(file.getBytes().toString());
 
         return this.funcionarioRepository.save(funcionario);
 
