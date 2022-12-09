@@ -63,4 +63,8 @@ public class FuncionarioService {
         Funcionario funcionario = this.getFuncionario(idFuncionario);
         this.funcionarioRepository.delete(funcionario);
     }
+
+    public Funcionario findByEmail(String email) {
+        return this.funcionarioRepository.findByEmail(email);
+    }
 }
