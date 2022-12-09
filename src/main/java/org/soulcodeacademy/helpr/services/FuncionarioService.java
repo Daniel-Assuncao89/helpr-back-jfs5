@@ -7,6 +7,9 @@ import org.soulcodeacademy.helpr.services.errors.RecursoNaoEncontradoError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -36,7 +39,7 @@ public class FuncionarioService {
     public Funcionario salvar(FuncionarioDTO dto) {
         Cargo cargo = this.cargoService.getCargo(dto.getIdCargo());
 
-        Funcionario funcionario = new Funcionario(null, dto.getNome(), dto.getEmail(), dto.getCpf(), encoder.encode(dto.getSenha()), dto.getFoto(), cargo);
+        Funcionario funcionario = new Funcionario(null, dto.getNome(), dto.getEmail(), dto.getCpf(), encoder.encode(dto.getSenha()),null, cargo);
         Funcionario salvo = this.funcionarioRepository.save(funcionario);
 
         return salvo;
@@ -52,7 +55,6 @@ public class FuncionarioService {
         funcionarioAtual.setEmail(dto.getEmail());
         funcionarioAtual.setCpf(dto.getCpf());
         funcionarioAtual.setSenha(encoder.encode(dto.getSenha()));
-        funcionarioAtual.setFoto(dto.getFoto());
         funcionarioAtual.setCargo(cargo);
 
         Funcionario atualizado = this.funcionarioRepository.save(funcionarioAtual);
@@ -66,5 +68,16 @@ public class FuncionarioService {
 
     public Funcionario findByEmail(String email) {
         return this.funcionarioRepository.findByEmail(email);
+    }
+
+    public Funcionario salvarFoto(MultipartFile file, Integer idFuncionario) throws IOException {
+        // Set the form data into entity
+        Funcionario funcionario = this.getFuncionario(idFuncionario);
+
+        funcionario.setFoto(file.getBytes());
+
+        return this.funcionarioRepository.save(funcionario);
+
+
     }
 }
