@@ -18,4 +18,8 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Intege
 
     @Query(value = "SELECT * FROM usuarios INNER JOIN cargo ON usuarios.id_cargo = cargo.id_cargo WHERE dtype = 'Funcionario' AND cargo.salario BETWEEN :valor1 AND :valor2", nativeQuery = true)
     List<Funcionario> findBySalarioEntreFaixas(Double valor1, Double valor2);
+
+    @Query(value = "SELECT count(id_Cargo) FROM usuarios WHERE dtype = 'Funcionario' AND id_cargo = :idCargo", nativeQuery = true)
+    Integer CountCargo(Integer idCargo);
+
 }

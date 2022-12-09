@@ -26,7 +26,7 @@ public class CargoService {
 
     public Cargo salvar(CargoDTO dto) {
 
-        Cargo cargo = new Cargo(null, dto.getNome(), dto.getDescricao(), dto.getSalario());
+        Cargo cargo = new Cargo(null, dto.getNome(), dto.getDescricao(), dto.getSalario(), dto.getLimiteFuncionario());
         Cargo cargoSalvo = this.cargoRepository.save(cargo);
         return cargoSalvo;
     }

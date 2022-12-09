@@ -3,6 +3,7 @@ import org.soulcodeacademy.helpr.domain.Cargo;
 import org.soulcodeacademy.helpr.domain.Funcionario;
 import org.soulcodeacademy.helpr.domain.dto.FuncionarioDTO;
 import org.soulcodeacademy.helpr.repositories.FuncionarioRepository;
+import org.soulcodeacademy.helpr.services.errors.LimiteQuantidadeError;
 import org.soulcodeacademy.helpr.services.errors.RecursoNaoEncontradoError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -38,27 +39,39 @@ public class FuncionarioService {
 
     public Funcionario salvar(FuncionarioDTO dto) {
         Cargo cargo = this.cargoService.getCargo(dto.getIdCargo());
+        Integer quantidade = this.funcionarioRepository.CountCargo(dto.getIdCargo());
 
-        Funcionario funcionario = new Funcionario(null, dto.getNome(), dto.getEmail(), dto.getCpf(), encoder.encode(dto.getSenha()),null, cargo);
-        Funcionario salvo = this.funcionarioRepository.save(funcionario);
+        if(quantidade < cargo.getLimiteFuncionario()){
+            Funcionario funcionario = new Funcionario(null, dto.getNome(), dto.getEmail(), dto.getCpf(), encoder.encode(dto.getSenha()),null, cargo);
+            Funcionario salvo = this.funcionarioRepository.save(funcionario);
 
-        return salvo;
+            return salvo;
+        } else {
+            throw new LimiteQuantidadeError("Quantidade de funcionários com esse cargo acima do permitido");
+        }
     }
 
     public Funcionario atualizar(Integer idFuncionario, FuncionarioDTO dto) {
 
         Funcionario funcionarioAtual = this.getFuncionario(idFuncionario);
-
         Cargo cargo = this.cargoService.getCargo(dto.getIdCargo());
+        Integer quantidade = this.funcionarioRepository.CountCargo(dto.getIdCargo());
 
-        funcionarioAtual.setNome(dto.getNome());
-        funcionarioAtual.setEmail(dto.getEmail());
-        funcionarioAtual.setCpf(dto.getCpf());
-        funcionarioAtual.setSenha(encoder.encode(dto.getSenha()));
-        funcionarioAtual.setCargo(cargo);
+        if(quantidade < cargo.getLimiteFuncionario()){
 
-        Funcionario atualizado = this.funcionarioRepository.save(funcionarioAtual);
-        return atualizado;
+            funcionarioAtual.setNome(dto.getNome());
+            funcionarioAtual.setEmail(dto.getEmail());
+            funcionarioAtual.setCpf(dto.getCpf());
+            funcionarioAtual.setSenha(encoder.encode(dto.getSenha()));
+            funcionarioAtual.setCargo(cargo);
+
+            Funcionario atualizado = this.funcionarioRepository.save(funcionarioAtual);
+            return atualizado;
+
+        } else {
+            throw new LimiteQuantidadeError("Quantidade de funcionários com esse cargo acima do permitido");
+        }
+
     }
 
     public void deletar(Integer idFuncionario) {
