@@ -5,8 +5,10 @@ import org.soulcodeacademy.helpr.domain.dto.FuncionarioDTO;
 import org.soulcodeacademy.helpr.services.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -56,5 +58,10 @@ public class FuncionarioController {
         return this.funcionarioService.findByEmail(email);
     }
 
+    @PostMapping(value = "/foto/{idFuncionario}")
+    public Funcionario uploadToDatabase(@PathVariable Integer idFuncionario, @RequestParam MultipartFile file)
+            throws IOException {
+        return this.funcionarioService.salvarFoto(file, idFuncionario);
 
+    }
 }

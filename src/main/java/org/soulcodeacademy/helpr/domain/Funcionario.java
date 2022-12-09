@@ -2,14 +2,14 @@ package org.soulcodeacademy.helpr.domain;
 import org.soulcodeacademy.helpr.domain.enums.Perfil;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Funcionario extends Usuario {
 
-
-
-    private String foto;
+    @Lob
+    private byte[] foto;
 
     @ManyToOne
     @JoinColumn(name = "id_cargo")
@@ -18,17 +18,17 @@ public class Funcionario extends Usuario {
     public Funcionario() {
     }
 
-    public Funcionario(Integer id, String nome, String email, String cpf, String senha, String foto, Cargo cargo) {
+    public Funcionario(Integer id, String nome, String email, String cpf, String senha, byte[] foto, Cargo cargo) {
         super(id, nome, email, cpf, senha, Perfil.FUNCIONARIO);
         this.foto = foto;
         this.cargo = cargo;
     }
 
-    public String getFoto() {
+    public byte[] getFoto() {
         return foto;
     }
 
-    public void setFoto(String foto) {
+    public void setFoto(byte[] foto) {
         this.foto = foto;
     }
 
