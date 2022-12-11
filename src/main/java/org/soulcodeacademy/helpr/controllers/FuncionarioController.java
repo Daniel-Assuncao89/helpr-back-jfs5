@@ -58,7 +58,7 @@ public class FuncionarioController {
         return this.funcionarioService.findByEmail(email);
     }
 
-    @PostMapping(value = "/foto/{idFuncionario}")
+    @PostMapping(value = "/funcionarios/foto/{idFuncionario}")
     public Funcionario uploadToDatabase(@PathVariable Integer idFuncionario, @RequestParam MultipartFile file)
             throws IOException {
         return this.funcionarioService.salvarFoto(file, idFuncionario);
