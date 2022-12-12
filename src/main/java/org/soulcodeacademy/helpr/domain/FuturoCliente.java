@@ -1,4 +1,6 @@
 package org.soulcodeacademy.helpr.domain;
+import org.hibernate.validator.constraints.br.CPF;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,7 +19,8 @@ public class FuturoCliente {
     @Column(nullable = false, unique = true, length = 120)
     public String email;
 
-    @Column(nullable = false, unique = true, length = 11)
+    @CPF
+    @Column(nullable = false, unique = true, length = 15)
     public String cpf;
 
     public FuturoCliente (){ }
