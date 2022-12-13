@@ -22,4 +22,6 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Intege
     @Query(value = "SELECT count(id_Cargo) FROM usuarios WHERE dtype = 'Funcionario' AND id_cargo = :idCargo", nativeQuery = true)
     Integer CountCargo(Integer idCargo);
 
+    @Query(value = "SELECT * FROM usuarios WHERE dtype = 'Funcionario' AND foto IS NULL", nativeQuery = true)
+    List<Funcionario> findFotoNull();
 }

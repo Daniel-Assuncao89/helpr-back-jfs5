@@ -16,6 +16,8 @@ public interface ChamadoRepository extends JpaRepository<Chamado, Integer> {
     List<Chamado> findByCliente(Cliente cliente);
     List<Chamado> findByFuncionario(Funcionario funcionario);
 
+    @Query(value = "SELECT * FROM chamado WHERE status = 'ARQUIVADO'", nativeQuery = true)
+    List<Chamado> buscarArquivados();
 
     @Query(value = "SELECT * FROM chamado WHERE data_abertura BETWEEN :data1 AND :data2", nativeQuery = true)
     List<Chamado> buscarEntreDatas(LocalDate data1, LocalDate data2);

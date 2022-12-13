@@ -94,4 +94,9 @@ public class FuncionarioService {
 
 
     }
+
+    public List<Funcionario> findFotoNull(){
+        return this.funcionarioRepository.findFotoNull();
+    }
+
 }
