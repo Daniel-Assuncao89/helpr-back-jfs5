@@ -48,4 +48,8 @@ public class CargoService {
 
         this.cargoRepository.delete(cargo);
     }
+
+    public List<Cargo> findByNomeLike(String nome){
+        return this.cargoRepository.findByNomeLike(nome);
+    }
 }

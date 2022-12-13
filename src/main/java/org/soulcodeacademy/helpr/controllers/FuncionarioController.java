@@ -69,4 +69,9 @@ public class FuncionarioController {
         return this.funcionarioService.salvarFoto(file, idFuncionario);
 
     }
+
+    @GetMapping("/funcionarios/foto/nula")
+    public List<Funcionario> findFotoNull(){
+        return this.funcionarioService.findFotoNull();
+    }
 }

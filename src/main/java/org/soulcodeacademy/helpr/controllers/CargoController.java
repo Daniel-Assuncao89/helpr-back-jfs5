@@ -64,4 +64,9 @@ public class CargoController {
     public void deletar(@PathVariable Integer idCargo) {
         this.cargoService.deletar(idCargo);
     }
+
+    @GetMapping("/cargos/busca/")
+    public List<Cargo> findByNome(@RequestParam String nome){
+        return this.cargoService.findByNomeLike(nome);
+    }
 }

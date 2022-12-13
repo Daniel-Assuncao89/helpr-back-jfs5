@@ -99,5 +99,8 @@ public class ChamadoController {
 
     }
 
-
+    @GetMapping("/chamados/arquivados")
+    public List<Chamado> listarArquivados(){
+        return this.chamadoService.listarArquivados();
+    }
 }

@@ -104,4 +104,8 @@ public class ChamadoService {
     public List<Chamado> listarPorIntervaloDatas(LocalDate data1, LocalDate data2) {
         return this.chamadoRepository.buscarEntreDatas(data1, data2);
     }
+
+    public List<Chamado> listarArquivados() {
+        return this.chamadoRepository.buscarArquivados();
+    }
 }
