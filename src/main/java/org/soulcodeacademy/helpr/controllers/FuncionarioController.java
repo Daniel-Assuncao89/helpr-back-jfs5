@@ -4,6 +4,7 @@ import org.soulcodeacademy.helpr.domain.Funcionario;
 import org.soulcodeacademy.helpr.domain.dto.FuncionarioDTO;
 import org.soulcodeacademy.helpr.services.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,6 +18,7 @@ public class FuncionarioController {
     private FuncionarioService funcionarioService;
 
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/funcionarios")
     public List<Funcionario> listar() {
         return this.funcionarioService.listar();
@@ -35,6 +37,7 @@ public class FuncionarioController {
     }
 
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/funcionarios")
     public Funcionario salvar(@Valid @RequestBody FuncionarioDTO dto) {
         Funcionario funcionario = this.funcionarioService.salvar(dto);
@@ -42,12 +45,14 @@ public class FuncionarioController {
     }
 
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/funcionarios/{idFuncionario}")
     public Funcionario atualizar(@PathVariable Integer idFuncionario, @Valid @RequestBody FuncionarioDTO dto) {
         Funcionario atualizado = this.funcionarioService.atualizar(idFuncionario, dto);
         return atualizado;
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/funcionarios/{idFuncionario}")
     public void deletar(@PathVariable Integer idFuncionario) {
         this.funcionarioService.deletar(idFuncionario);

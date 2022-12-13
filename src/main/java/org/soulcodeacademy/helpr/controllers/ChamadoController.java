@@ -8,6 +8,7 @@ import org.soulcodeacademy.helpr.domain.enums.StatusChamado;
 import org.soulcodeacademy.helpr.services.ChamadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +25,7 @@ public class ChamadoController {
     @Autowired
     private ChamadoService chamadoService;
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_FUNCIONARIO')")
     @GetMapping("/chamados")
     public List<Chamado> listarChamados() {
         return this.chamadoService.listarChamados();
@@ -34,11 +36,13 @@ public class ChamadoController {
         return this.chamadoService.getChamado(idChamado);
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_FUNCIONARIO', ROLE_CLIENTE)")
     @PostMapping("/chamados")
     public Chamado salvar(@Valid @RequestBody ChamadoDTO dto) {
         return this.chamadoService.salvar(dto);
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_FUNCIONARIO')")
     @PutMapping("/chamados/{idChamado}")
     public Chamado atualizar(@PathVariable Integer idChamado, @Valid @RequestBody ChamadoDTO dto) {
         return this.chamadoService.atualizar(idChamado, dto);
